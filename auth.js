@@ -2,7 +2,6 @@ import jwksRsa from 'jwks-rsa';
 import jwt from 'express-jwt';
 
 module.exports = app => {
-    console.log(app.libs.config)
     return {
         authenticate: () => {
             return jwt({
@@ -16,6 +15,16 @@ module.exports = app => {
                 issuer: `https://${app.libs.config.authDomain}/`,
                 algorithms: ["RS256"]
             });
+        },
+        authorize: (role) => {
+            return function (req, res, next) {
+                const roles = req.user["http://localhost:3000/roles"];
+                if (Array.isArray(roles) && roles.includes(role)) {
+                    return next();
+                } else {
+                    return res.status(401).send("User is not authorized");
+                }
+            };
         }
     };
 };

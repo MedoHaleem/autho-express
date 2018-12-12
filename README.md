@@ -1,7 +1,7 @@
-Customer Service is Api
 
--create customer table with Faker
--User of Role sale_rep can view list of customers with status hot
--Use Auth0 for authentication
--return 401 if not authorized
--Create login and index page to list customers
+## How To run the application
+
+after running ``npm install``, copy .env file in root folder and simpley run ``npm start`` for whatever reason if babel node is giving any trouble you can run ``npm run deploy`` or ``npm run deploy-linux``
+one for windows and the other is for linux.
+
+##

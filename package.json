@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node server.js"
+    "start": "babel-node server.js",
+    "build": "babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./package-lock.json --copy-files",
+    "copy": "copy .env dist ",
+    "copy-linux": "cp .env dist/",
+    "deploy": "npm run build && npm run copy && cd dist && node server.js",
+    "deploy-linux": "npm run build && npm run copy-linux && cd dist && node server.js"
   },
   "dependencies": {
     "consign": "^0.1.6",

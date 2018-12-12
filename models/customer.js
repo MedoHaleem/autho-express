@@ -11,6 +11,7 @@ function User(id) {
         status: "Hot"
     };
 }
+
 // populate fake db, I add plus one so I don't have customer by id 0
 let UsersDb = Array.from(Array(10), (_, i) => User(i + 1));
 
@@ -19,7 +20,19 @@ module.exports = app => {
         // Emulate how Sequlize ORM function look like to fetch customers
         findAll: () => {
             return new Promise((resolve, reject) => {
-              resolve(UsersDb)
+                resolve(UsersDb);
+            });
+        },
+        batchCreate: () => {
+            return new Promise((resolve, reject) => {
+                UsersDb = Array.from(Array(10), (_, i) => User(i + 1));
+                resolve(UsersDb);
+            });
+        },
+        DeleteAll: () => {
+            return new Promise((resolve, reject) => {
+                UsersDb = [];
+                resolve(UsersDb);
             });
         }
     };

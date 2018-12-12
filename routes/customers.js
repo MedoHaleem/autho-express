@@ -6,7 +6,7 @@ module.exports = app => {
     //     .all(app.auth.authenticate())
     //     .get(CustomerController.getAllCustomers)
     app.get("/customers", app.auth.authenticate(), app.auth.authorize('sales_rep'), (req, res) => {
-        Customer.findAll().then(customers => res.json({customers: customers}));
+        Customer.findAll().then(customers => res.json({customers: customers})).catch(err => res.status(500).send({error: err}));
     });
 
 };

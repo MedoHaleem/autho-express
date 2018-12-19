@@ -1,5 +1,5 @@
 {
-  "name": "aslovi",
+  "name": "auth0-express",
   "version": "0.0.0",
   "private": true,
   "scripts": {
